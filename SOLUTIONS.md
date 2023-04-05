@@ -4,7 +4,7 @@ My notes on HackerRank challenges, 2023. Each challenge is scored by the accurac
 
 ## Plus Minus 
 
-Plus Minus involves counting the positive, negative, and zero elements in an array, with the final output displaying the ratio, to the sixth decimal place, of these elements occurring. 
+Plus Minus involves counting the positive, negative, and zero elements in an array, and asks that the final output display the ratios, to the sixth decimal place, of these elements occurring. Finding the solution required cycling through the array via a `for` loop, and checking `if` a given element was less than, more than, or equal to zero, and adding to their given counts.
 
 ```
 void plusMinus(int arr_count, int* arr) {
