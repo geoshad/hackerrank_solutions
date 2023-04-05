@@ -28,3 +28,39 @@ void plusMinus(int arr_count, int* arr) {
     printf("%.6f\n", (zero_count/arr_count));
 }
 ```
+
+## Mini-Max Sum
+
+This problem involves finding the minimum and maximum numbers than can be calculated by summing four out of five given integers. Before calculations, I sorted the array to be in ascending order, so that finding the required integers is more convenient. From there, the minimum sum could be found by cycling through the array from lowest to highest (-1), whilst the maximum sum could be found by cycling from highest to lowest (+1). These sums are then printed on separate lines as per the output requirements.
+
+```
+void miniMaxSum(int arr_count, int* arr) {
+    int temp = 0;
+    long int min = 0, max = 0;
+    
+    // sort array in ascending order
+    for (int i = 0; i < arr_count; i++) {
+        for (int j = i + 1; j < arr_count; j++) {
+            if (arr[i] > arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp; 
+            }
+        }
+    }
+    
+    // find min
+    for (int i = 0; i < arr_count; i++) {
+        min = min + arr[i - 1];
+    }
+    
+    // find max
+    for (int j = arr_count; j > 0; j--) {
+        max = max + arr[j];
+    }
+    
+    // print values (no lines)
+    printf("%lu ", min);
+    printf("%lu ", max);
+}
+```
