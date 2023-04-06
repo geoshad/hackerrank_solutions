@@ -22,6 +22,7 @@ void plusMinus(int arr_count, int* arr) {
             zero_count++;
         }
     }
+    
     // print array ratios with 6 digits after decimal
     printf("%.6f\n", (pos_count/arr_count));
     printf("%.6f\n", (neg_count/arr_count));
@@ -132,6 +133,7 @@ int findMedian(int arr_count, int* arr) {
     } else {
         median = arr[arr_count/2];
     }
+    
     return median;
 }
 ```
@@ -150,6 +152,7 @@ int lonelyinteger(int a_count, int* a) {
     for (int i = 0; i < a_count; i++) {
         unique ^= a[i];
     } 
+    
     return unique;
 }
 ```
@@ -158,7 +161,7 @@ int lonelyinteger(int a_count, int* a) {
 
 Diagonal difference is a challenge that asks for function which takes a given square matrix, and calculates the absolute difference between the sums of its diagonals. This would require calculating the sum of the left-to-right diagonal, minus the sum of right-to-left diagonal. 
 
-To find the left diagonals, `int i` would traverse through the matrix array in order to find the values at `[0][0]`, `[1][1]` and `[2][2]`. The `left` variable would add these values to its sum until the end is reached. Conversely, the right diagonal would require summing the values at `[2][0]`, `[1][1]` and `[0][2]`.
+To find the left diagonals, `int i` would traverse through the matrix array in order to find the values at `[0][0]`, `[1][1]` and `[2][2]`. The `left` variable would add these values to its sum until the end is reached. Conversely, the right diagonal would require summing the values at `[2][0]`, `[1][1]` and `[0][2]` by traversing backwards with `int j`. Finding the difference is simply a matter of subtracting right from left, but requires the absolute value, so `abs()` is applied.
 
 ```
 int diagonalDifference(int arr_rows, int arr_columns, int** arr) {
@@ -174,5 +177,22 @@ int diagonalDifference(int arr_rows, int arr_columns, int** arr) {
     
     difference = left - right;
     return abs(difference);
+}
+```
+
+## Counting Sort 1
+
+This challenge requires that for a given a list of integers, count and return the number of times each value appears as an array of integers. The array given is always of size 100, but enough memory should be allocated, to account for any array size. The array is traversed in a `for` loop, and `result` acts an array counting values as it goes through the indexes of `arr`. The array counting the frequency of values is then returned.
+
+```
+int* countingSort(int arr_count, int* arr, int* result_count) {
+    int* result = malloc(sizeof(int)*arr_count);
+    
+    for (int i = 0; i < arr_count; i++){
+        result[arr[i]] += 1;
+    }
+    
+    *result_count = 100;
+    return result;
 }
 ```
