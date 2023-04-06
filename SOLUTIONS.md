@@ -107,37 +107,6 @@ char* timeConversion(char* s) {
 }
 ```
 
-## Mock Test 1: Find the Median
-
-The first test encountered required a function to pass in an array of integers, and return the median integer. As the example hinted at sorting the array, I applied the same sorting algorithm from the Mini-Max Sum challenge. Once the array was in ascending order, I created a conditional statement to check if the array count was odd or even, by applying a modulo operation. If odd, the median would be `(n+1)/2`; if even, the median would be `(n/2) + (n+1/2)`. As the array count is one count more than the array's indexes, we can adjust this algorithm as needed. 
-
-While the below solution works as intended, it did not pass one of the test cases due to long runtime (~2 seconds); I wonder how to improve its efficiency?
-
-```
-int findMedian(int arr_count, int* arr) {
-    int temp = 0;
-    int median;
-    
-    for (int i = 0; i < arr_count; i++) {
-        for (int j = i + 1; j < arr_count; j++) {
-            if (arr[i] > arr[j]) {
-                temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
-    }
-    
-    if (arr_count % 2) {
-        median = (arr[arr_count/2] + arr[arr_count/2+1])/2;
-    } else {
-        median = arr[arr_count/2];
-    }
-    
-    return median;
-}
-```
-
 ## Lonely Integer
 
 The following challenge requires a function wherein an array of integers is passed through. Each value occurs twice, excepting for one; this unique element is the one we want returned. 
@@ -196,6 +165,8 @@ int* countingSort(int arr_count, int* arr, int* result_count) {
     return result;
 }
 ```
+
+
 
 ## Zig Zag Sequence
 
