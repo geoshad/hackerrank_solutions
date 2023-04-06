@@ -67,7 +67,9 @@ void miniMaxSum(int arr_count, int* arr) {
 
 ## Time Conversion
 
-The time conversion challenge requires a function that passes a `string` (`char*`) of time, in 12-hour AM/PM format, and have it returned as a converted, 24-hour military time. To complete this task, I first checked if the time needed conversion, by seeing if the "AM/PM" position in the string array had an 'A' or a 'P'; times in PM would require converting. Only the first two indexes in the string array, i.e., the hour, would need to be manipulated, also ensuring that the original "AM/PM" is ignored.
+The time conversion challenge requires a function that passes a `string` (`char*`) of time, in 12-hour AM/PM format, and have it returned as a converted, 24-hour military time. 
+
+To complete this task, I first checked if the time needed conversion, by seeing if the "AM/PM" position in the string array had an 'A' or a 'P'; times in PM would require converting. Only the first two indexes in the string array, i.e., the hour, would need to be manipulated, also ensuring that the original "AM/PM" is ignored.
 
 ```
 char* timeConversion(char* s) {
@@ -106,7 +108,9 @@ char* timeConversion(char* s) {
 
 ## Mock Test 1: Find the Median
 
-The first test encountered required a function to pass in an array of integers, and return the median integer. As the example hinted at sorting the array, I applied the same sorting algorithm from the Mini-Max Sum challenge. Once the array was in ascending order, I created a conditional statement to check if the array count was odd or even, by applying a modulo operation. If odd, the median would be `(n+1)/2`; if even, the median would be `(n/2) + (n+1/2)`. As the array count is one count more than the array's indexes, we can adjust this algorithm as needed. While the below solution works as intended, it did not pass one of the test cases due to long runtime (~2 seconds); I wonder how to improve its efficiency?
+The first test encountered required a function to pass in an array of integers, and return the median integer. As the example hinted at sorting the array, I applied the same sorting algorithm from the Mini-Max Sum challenge. Once the array was in ascending order, I created a conditional statement to check if the array count was odd or even, by applying a modulo operation. If odd, the median would be `(n+1)/2`; if even, the median would be `(n/2) + (n+1/2)`. As the array count is one count more than the array's indexes, we can adjust this algorithm as needed. 
+
+While the below solution works as intended, it did not pass one of the test cases due to long runtime (~2 seconds); I wonder how to improve its efficiency?
 
 ```
 int findMedian(int arr_count, int* arr) {
@@ -134,7 +138,9 @@ int findMedian(int arr_count, int* arr) {
 
 ## Lonely Integer
 
-The following challenge requires a function wherein an array of integers is passed through. Each value occurs twice, excepting for one; this unique element is the one we want returned. Initially, I was very unsure of how this was be calculated, but recalling past experiences in Python, the bitwise `XOR` operator could be used to find the value occurring an odd number of times. So, to find this element, a `for` loop cycles through the array and checks for the unique value - a much simpler solution than expected!
+The following challenge requires a function wherein an array of integers is passed through. Each value occurs twice, excepting for one; this unique element is the one we want returned. 
+
+Initially, I was very unsure of how this was be calculated, but recalling past experiences in Python, the bitwise `XOR` operator could be used to find the value occurring an odd number of times. So, to find this element, a `for` loop cycles through the array and checks for the unique value - a much simpler solution than expected!
 
 ```
 int lonelyinteger(int a_count, int* a) {
@@ -145,5 +151,28 @@ int lonelyinteger(int a_count, int* a) {
         unique ^= a[i];
     } 
     return unique;
+}
+```
+
+## Diagonal Difference
+
+Diagonal difference is a challenge that asks for function which takes a given square matrix, and calculates the absolute difference between the sums of its diagonals. This would require calculating the sum of the left-to-right diagonal, minus the sum of right-to-left diagonal. 
+
+To find the left diagonals, `int i` would traverse through the matrix array in order to find the values at `[1][1]`, `[2][2]` and `[3][3]`. The `left` variable would add these values to its sum until the end is reached. Conversely, the right diagonal would require summing the values at `[3][1]`, `[2][2]` and `[1][3]`.
+
+```
+int diagonalDifference(int arr_rows, int arr_columns, int** arr) {
+    int difference = 0, left = 0, right = 0;
+
+    for (int i = 0; i < arr_rows; i++) {
+        left += arr[i][i];
+    }
+    
+    for (int j = arr_rows - 1; j >= 0; j--) {
+        right += arr[j][arr_columns - j - 1];
+    }
+    
+    difference = left - right;
+    return abs(difference);
 }
 ```
