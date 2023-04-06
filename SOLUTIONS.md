@@ -199,7 +199,7 @@ int* countingSort(int arr_count, int* arr, int* result_count) {
 
 ## Flipping the Matrix
 
-The second test encountered requires that a passed in matrix/2D array of integers can have its rows and columns reversed/flipped, so that the upper-left quadrant has the largest sum of values. To complete this challenge, I first calculated the size of a quadrant (i.e. submatrix) by dividing it by the total number of maxtrix rows. Inside two `for` loops, corresponding with rows and columns, each value is determined 
+The second test encountered requires that a passed in matrix/2D array of integers can have its rows and columns reversed/flipped, so that the upper-left quadrant has the largest sum of values. To complete this challenge, I first calculated the size of a quadrant (i.e. submatrix) by dividing it by the total number of maxtrix rows. Inside two `for` loops, the elements in the upper-left quadrant are iterated over, and the corresponding elements in the bottom-right quadrant are determined. For each row or column, the maximum value is located, and flips all elements to that value. The sum of the upper-quadrant elements are then calculated and returned.
 
 ```
 int flippingMatrix(int matrix_rows, int matrix_columns, int** matrix) {
