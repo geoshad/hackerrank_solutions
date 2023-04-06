@@ -224,6 +224,6 @@ def findZigZagSequence(a, n):
 
 The following changes were made: 
 
-1. Line 3: `mid = int((n + 1)/2)` → ` mid = int((n + 1)/2) - 1`
-2. Line 7: `ed = n - 1` → `ed = n - 2`
-3. Line 11: `ed = ed + 1` → `ed = ed - 1`
+1. Line 3: `mid = int((n + 1)/2) - 1`
+2. Line 7: `ed = n - 2`
+3. Line 11: `ed = ed - 1`
