@@ -126,6 +126,37 @@ int lonelyinteger(int a_count, int* a) {
 }
 ```
 
+## Find the Median
+
+The first test encountered required a function to pass in an array of integers, and return the median integer. As the example hinted at sorting the array, I applied the same sorting algorithm from the Mini-Max Sum challenge. Once the array was in ascending order, I created a conditional statement to check if the array count was odd or even, by applying a modulo operation. If odd, the median would be `(n+1)/2`; if even, the median would be `(n/2) + (n+1/2)`. As the array count is one count more than the array's indexes, we can adjust this algorithm as needed. 
+
+While the below solution works as intended, it did not pass one of the test cases due to long runtime (~2 seconds); I wonder how to improve its efficiency?
+
+```
+int findMedian(int arr_count, int* arr) {
+    int temp = 0;
+    int median;
+    
+    for (int i = 0; i < arr_count; i++) {
+        for (int j = i + 1; j < arr_count; j++) {
+            if (arr[i] > arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    
+    if (arr_count % 2) {
+        median = (arr[arr_count/2] + arr[arr_count/2+1])/2;
+    } else {
+        median = arr[arr_count/2];
+    }
+    
+    return median;
+}
+```
+
 ## Diagonal Difference
 
 Diagonal difference is a challenge that asks for function which takes a given square matrix, and calculates the absolute difference between the sums of its diagonals. This would require calculating the sum of the left-to-right diagonal, minus the sum of right-to-left diagonal. 
@@ -166,6 +197,54 @@ int* countingSort(int arr_count, int* arr, int* result_count) {
 }
 ```
 
+## Flipping the Matrix
+
+The second test encountered requires that a passed in matrix/2D array of integers can have its rows and columns reversed/flipped, so that the upper-left quadrant has the largest sum of values. To complete this challenge, I first calculated the size of a quadrant (i.e. submatrix) by dividing it by the total number of maxtrix rows. Inside two `for` loops, corresponding with rows and columns, each value is determined 
+
+```
+int flippingMatrix(int matrix_rows, int matrix_columns, int** matrix) {
+    // determine the size of a quadrant
+    int quadrant_size = (matrix_rows + 1) / 2;
+    int sum = 0;
+    
+    // for loops to flip the elements
+    for (int i = 0; i < quadrant_size; i++) {
+        for (int j = 0; j < quadrant_size; j++) {
+        
+            // determine the corresponding element in the bottom-right quadrant
+            int x = matrix_rows - i - 1;
+            int y = matrix_columns - j - 1;
+            int max_val = matrix[i][j];
+            
+            // determine the max value of the four corresponding elements
+            if (matrix[x][j] > max_val) {
+                max_val = matrix[x][j];
+            }
+            if (matrix[i][y] > max_val) {
+                max_val = matrix[i][y];
+            }
+            if (matrix[x][y] > max_val) {
+                max_val = matrix[x][y];
+            }
+            
+            // flip the elements to get maximum sum
+            matrix[i][j] = max_val;
+            matrix[x][j] = max_val;
+            matrix[i][y] = max_val;
+            matrix[x][y] = max_val;
+        }
+    }
+    
+    // calculating the sum within quadrant range
+    for (int i = 0; i < quadrant_size; i++) {
+        for (int j = 0; j < quadrant_size; j++) {
+            sum += matrix[i][j];
+        }
+    }
+    
+    return sum;
+}
+```
 
 
 ## Zig Zag Sequence
