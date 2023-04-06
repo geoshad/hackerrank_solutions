@@ -196,3 +196,34 @@ int* countingSort(int arr_count, int* arr, int* result_count) {
     return result;
 }
 ```
+
+## Zig Zag Sequence
+
+The aim of this challenge is simply to debug a given function, `findZigZagSequence`, until it works as intended. Funnily, there was no code for the C module, so I opted for Python in its stead. The original function is as follows:
+
+```
+def findZigZagSequence(a, n):
+    a.sort()
+    mid = int((n + 1)/2)
+    a[mid], a[n-1] = a[n-1], a[mid]
+
+    st = mid + 1
+    ed = n - 1
+    while(st <= ed):
+        a[st], a[ed] = a[ed], a[st]
+        st = st + 1
+        ed = ed + 1
+
+    for i in range (n):
+        if i == n-1:
+            print(a[i])
+        else:
+            print(a[i], end = ' ')
+    return
+```
+
+The following changes were made: 
+
+1. Line 3: `mid = int((n + 1)/2)` → ` mid = int((n + 1)/2) - 1`
+2. Line 7: `ed = n - 1` → `ed = n - 2`
+3. Line 11: `ed = ed + 1` → `ed = ed - 1`
