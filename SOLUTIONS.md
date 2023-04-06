@@ -130,3 +130,20 @@ int findMedian(int arr_count, int* arr) {
     }
     return median;
 }
+```
+
+## Lonely Integer
+
+The following challenge requires a function wherein an array of integers is passed through. Each value occurs twice, excepting for one; this unique element is the one we want returned. Initially, I was very unsure of how this was be calculated, but recalling past experiences in Python, the bitwise `XOR` operator could be used to find the value occurring an odd number of times. So, to find this element, a `for` loop cycles through the array and checks for the unique value - a much simpler solution than expected!
+
+```
+int lonelyinteger(int a_count, int* a) {
+    int unique = 0;
+    
+    // cycle through array
+    for (int i = 0; i < a_count; i++) {
+        unique ^= a[i];
+    } 
+    return unique;
+}
+```
