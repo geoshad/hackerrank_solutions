@@ -227,3 +227,25 @@ The following changes were made:
 1. Line 3: `mid = int((n + 1)/2) - 1`
 2. Line 7: `ed = n - 2`
 3. Line 11: `ed = ed - 1`
+
+## Tower Breakers
+
+After reading the description of this challenge, and discussions about it, it seems I wasn't the only one who thought the challenge was a little weird and vague. The rules of Tower Breakers are as follows:
+
+* There are two players, moving in alternating turns, and Player 1 always moves first.
+* Players always move optimally.
+* Initially, there are `n` towers, both of height `m`.
+* In each turn, a player can choose a tower of height `x` and reduce its height to `y`, where `1 <= y < x` and `y` evenly divides `x`. 
+* If the current player is unable to make a move, they lose the game.
+
+The challenge of Tower Breakers requires that for the given values of `n` and `m`, determine the winner of the game by returning 1 for Player 1, or 2 for Player 2. It seems that if `m` values to either 1, or an even number, Player 2 always wins.
+
+```
+int towerBreakers(int n, int m) {
+    if (n % 2 == 0) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+```
