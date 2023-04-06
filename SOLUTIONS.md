@@ -158,7 +158,7 @@ int lonelyinteger(int a_count, int* a) {
 
 Diagonal difference is a challenge that asks for function which takes a given square matrix, and calculates the absolute difference between the sums of its diagonals. This would require calculating the sum of the left-to-right diagonal, minus the sum of right-to-left diagonal. 
 
-To find the left diagonals, `int i` would traverse through the matrix array in order to find the values at `[1][1]`, `[2][2]` and `[3][3]`. The `left` variable would add these values to its sum until the end is reached. Conversely, the right diagonal would require summing the values at `[3][1]`, `[2][2]` and `[1][3]`.
+To find the left diagonals, `int i` would traverse through the matrix array in order to find the values at `[0][0]`, `[1][1]` and `[2][2]`. The `left` variable would add these values to its sum until the end is reached. Conversely, the right diagonal would require summing the values at `[2][0]`, `[1][1]` and `[0][2]`.
 
 ```
 int diagonalDifference(int arr_rows, int arr_columns, int** arr) {
