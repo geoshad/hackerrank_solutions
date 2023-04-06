@@ -64,3 +64,44 @@ void miniMaxSum(int arr_count, int* arr) {
     printf("%lu ", max);
 }
 ```
+
+## Time Conversion
+
+The time conversion challenge requires a function that passes a `string` (`char*`) of time, in 12-hour AM/PM format, and have it be converted to 24-hour military time. To complete this task, I first checked if the time needed conversion, by seeing if the "AM/PM" position in the string array had an 'A' or a 'P'; times in PM would require converting.
+
+```
+char* timeConversion(char* s) {
+    bool not_military;
+
+    // check time format of given time
+    if (s[8] == 'A') {
+        not_military = false;
+    } else if (s[8] == 'P') {
+        not_military = true;
+    }
+    
+    if(not_military == true)
+    {
+        if ((s[0] == 0) && (s[1] >= '8')) {
+            s[0] +=2;
+            s[1] +=2;
+        } else if ((s[0] == '1') && (s[1] == '2')) {
+            s[0] = '1';
+            s[1] = '2';
+        } else {
+            s[0] += 1;
+            s[1] += 2;
+        }
+    } else {
+        if ((s[0] == '1') && (s[1] == '2')) {
+            s[0] = '0';
+            s[1] = '0';
+        }
+    }
+
+    s[8] = '\0';
+    s[9] = '\0';
+    
+    return s;   
+}
+```
