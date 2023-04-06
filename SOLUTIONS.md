@@ -199,7 +199,7 @@ int* countingSort(int arr_count, int* arr, int* result_count) {
 
 ## Zig Zag Sequence
 
-The aim of this challenge is simply to debug a given function, `findZigZagSequence`, until it works as intended. Funnily, there was no code for the C module, so I opted for Python in its stead. The original function is as follows:
+The aim of this challenge is simply to debug a given function, `findZigZagSequence`, until it works as intended and succeeds in all test cases. This function permutes an array so it is rearranged into a "zig zag" sequence, wherein the first `k` elements are in ascending order, and the last `k` elements are in descending order. Funnily, there was no code for the C module, so I opted for Python 3 in its stead. The original function is as follows:
 
 ```
 def findZigZagSequence(a, n):
