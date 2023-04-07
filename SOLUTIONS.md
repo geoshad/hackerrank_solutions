@@ -1,6 +1,6 @@
 # Solutions
 
-My notes on HackerRank challenges, 2023. Each challenge is scored by the accuracy of its output, and is tested against various cases. Challenges may be completed in one's programming language of choice; I am using C, due to its heavy use in my university studies.
+My notes on HackerRank challenges, 2023. Each challenge is scored by the accuracy of its output, and is tested against various cases. Challenges may be completed in one's programming language of choice; I am using C and Python, due to its heavy use in my university studies.
 
 ## Plus Minus 
 
@@ -201,52 +201,6 @@ int* countingSort(int arr_count, int* arr, int* result_count) {
 
 The second test encountered requires that a passed in matrix/2D array of integers can have its rows and columns reversed/flipped, so that the upper-left quadrant has the largest sum of values. To complete this challenge, I first calculated the size of a quadrant (i.e. submatrix) by dividing it by the total number of maxtrix rows. Inside two `for` loops, the elements in the upper-left quadrant are iterated over, and the corresponding elements in the bottom-right quadrant are determined. For each row or column, the maximum value is located, and flips all elements to that value. The sum of the upper-quadrant elements are then calculated and returned.
 
-```
-int flippingMatrix(int matrix_rows, int matrix_columns, int** matrix) {
-    // determine the size of a quadrant
-    int quadrant_size = (matrix_rows + 1) / 2;
-    int sum = 0;
-    
-    // for loops to flip the elements
-    for (int i = 0; i < quadrant_size; i++) {
-        for (int j = 0; j < quadrant_size; j++) {
-        
-            // determine the corresponding element in the bottom-right quadrant
-            int x = matrix_rows - i - 1;
-            int y = matrix_columns - j - 1;
-            int max_val = matrix[i][j];
-            
-            // determine the max value of the four corresponding elements
-            if (matrix[x][j] > max_val) {
-                max_val = matrix[x][j];
-            }
-            if (matrix[i][y] > max_val) {
-                max_val = matrix[i][y];
-            }
-            if (matrix[x][y] > max_val) {
-                max_val = matrix[x][y];
-            }
-            
-            // flip the elements to get maximum sum
-            matrix[i][j] = max_val;
-            matrix[x][j] = max_val;
-            matrix[i][y] = max_val;
-            matrix[x][y] = max_val;
-        }
-    }
-    
-    // calculating the sum within quadrant range
-    for (int i = 0; i < quadrant_size; i++) {
-        for (int j = 0; j < quadrant_size; j++) {
-            sum += matrix[i][j];
-        }
-    }
-    
-    return sum;
-}
-```
-
-
 ## Zig Zag Sequence
 
 The aim of this challenge is simply to debug a given function, `findZigZagSequence`, until it works as intended and succeeds in all test cases. This function permutes an array so it is rearranged into a "zig zag" sequence, wherein the first `k` elements are in ascending order, and the last `k` elements are in descending order. Funnily, there was no code for the C module, so I opted for Python 3 in its stead. The original function is as follows:
@@ -297,5 +251,29 @@ int towerBreakers(int n, int m) {
     } else {
         return 1;
     }
+}
+```
+
+## Caesar Cipher
+
+This challenge involves creating a function that passes in a string, `s`, and shifts its letters by `k` number of positions in the alphabet. For example, in a rotation by 3, the letters w, x, y and z would map to z, a, b and c. When a shift reaches the end of the alphabet, it should simply loop back to the start, meaning that the use of modulo operations will be useful in this function. To begin, k is initialized to handle this alphabet overflow. A `for` loop then iterates through the string
+
+```
+char* caesarCipher(char* s, int k) {
+    k = k % 26; // used when k > 26 to handle overflow
+    
+    // interating through array, appropriate to size of s
+    for (int i = 0; i < strlen(s); i++) {
+        if (isalpha(s[i])) { // ensure return of alphabetic char
+            if (isupper(s[i])) { // if uppercase char
+            // adding the shift k
+            // taking the result of modulo 26 to wrap around the alphabet 
+                s[i] = ((s[i] - 'A' + k) % 26) + 'A';
+            } else {
+                s[i] = ((s[i] - 'a' + k) % 26) + 'a';
+            }
+        }
+    }
+    return s;
 }
 ```
