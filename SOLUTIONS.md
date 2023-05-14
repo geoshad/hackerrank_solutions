@@ -110,6 +110,7 @@ The time conversion challenge requires a function that passes a `string` (`char*
 
 To complete this task, I first checked if the time needed conversion, by seeing if the "AM/PM" position in the string array had an 'A' or a 'P'; times in PM would require converting. Only the first two indexes in the string array, i.e., the hour, would need to be manipulated, also ensuring that the original "AM/PM" is ignored.
 
+C
 ```
 char* timeConversion(char* s) {
     bool not_military;
@@ -143,6 +144,19 @@ char* timeConversion(char* s) {
     s[8] = '\0';
     return s;   
 }
+```
+
+Python
+```
+def timeConversion(s):    
+    if s[:2] == 12 and s[-2:] == "AM":
+        return "00" + s[2:-2]
+    elif s[-2:] == "AM":
+        return s[:-2]
+    elif s[:2] == 12 and s[-2:] == "PM":
+        return s[:-2]
+    else:
+        return str(int(s[:2]) + 12) + s[2:8]
 ```
 
 ## Lonely Integer
