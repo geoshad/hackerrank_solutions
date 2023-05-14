@@ -6,7 +6,7 @@ My notes on HackerRank challenges, 2023. Each challenge is scored by the accurac
 
 Plus Minus involves counting the positive, negative, and zero elements in an array, and asks that the final output display the ratios, to the sixth decimal place, of these elements occurring. Finding the solution required cycling through the array via a `for` loop, and checking `if` a given element was less than, more than, or equal to zero, and adding to their given counts.
 
-C:
+C
 ```
 void plusMinus(int arr_count, int* arr) {
     // initialize floats for counting values in array
@@ -31,7 +31,7 @@ void plusMinus(int arr_count, int* arr) {
 }
 ```
 
-Python:
+Python
 ```
 def plusMinus(arr):
     size = len(arr)
@@ -59,6 +59,7 @@ def plusMinus(arr):
 
 This problem involves finding the minimum and maximum numbers than can be calculated by summing four out of five given integers. Before calculations, I sorted the array to be in ascending order, so that finding the required integers is more convenient. From there, the minimum sum could be found by cycling through the array from lowest to highest (-1), whilst the maximum sum could be found by cycling from highest to lowest (+1). These sums are then printed on separate lines as per the output requirements.
 
+C
 ```
 void miniMaxSum(int arr_count, int* arr) {
     int temp = 0;
@@ -89,6 +90,18 @@ void miniMaxSum(int arr_count, int* arr) {
     printf("%lu ", min);
     printf("%lu ", max);
 }
+```
+
+Python
+```
+def miniMaxSum(arr):
+    mini = min(arr)
+    maxi = max(arr)
+    
+    min_sum = sum(arr) - maxi
+    max_sum = sum(arr) - mini
+    
+    print(min_sum, max_sum)
 ```
 
 ## Time Conversion
