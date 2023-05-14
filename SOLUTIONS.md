@@ -6,6 +6,7 @@ My notes on HackerRank challenges, 2023. Each challenge is scored by the accurac
 
 Plus Minus involves counting the positive, negative, and zero elements in an array, and asks that the final output display the ratios, to the sixth decimal place, of these elements occurring. Finding the solution required cycling through the array via a `for` loop, and checking `if` a given element was less than, more than, or equal to zero, and adding to their given counts.
 
+C:
 ```
 void plusMinus(int arr_count, int* arr) {
     // initialize floats for counting values in array
@@ -28,6 +29,30 @@ void plusMinus(int arr_count, int* arr) {
     printf("%.6f\n", (neg_count/arr_count));
     printf("%.6f\n", (zero_count/arr_count));
 }
+```
+
+Python:
+```
+def plusMinus(arr):
+    size = len(arr)
+    pos_count, neg_count, zero_count = 0, 0, 0
+    
+    for i in arr:
+        if i == 0:
+            # i++ doesn't work in python
+            zero_count += 1
+        elif i < 0:
+            neg_count += 1
+        else:
+            pos_count += 1
+    
+    pos = round(pos_count/size, 6)
+    neg = round(neg_count/size, 6)
+    zero =round(zero_count/size, 6)
+    
+    print(pos)
+    print(neg)
+    print(zero)
 ```
 
 ## Mini-Max Sum
