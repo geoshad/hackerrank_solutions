@@ -149,14 +149,16 @@ char* timeConversion(char* s) {
 Python
 ```
 def timeConversion(s):    
-    if s[:2] == 12 and s[-2:] == "AM":
-        return "00" + s[2:-2]
-    elif s[-2:] == "AM":
-        return s[:-2]
-    elif s[:2] == 12 and s[-2:] == "PM":
-        return s[:-2]
+    if s[:2] == "12":
+        if s[-2] == "P":
+            return s[:-2]
+        else:
+            # use f-string for easy formatting
+            return f"00{s[2:-2]}"
+    elif s[-2] == "P":
+        return f"{int(s[:2]) + 12}{s[2:-2]}"
     else:
-        return str(int(s[:2]) + 12) + s[2:8]
+        return s[:-2]
 ```
 
 ## Lonely Integer
